@@ -243,9 +243,45 @@ void task11()
     cout << endl;
 }
 
-void task12()
-{
+struct player {
+    string name;
+    int level;
+    int health;
+};
 
+void task12() {
+    const int numplayers = 3;
+    player players[numplayers];
+
+    for (int i = 0; i < numplayers; i++) {
+        cout << "enter name of player #" << i + 1 << ": ";
+        cin >> players[i].name;
+
+        cout << "enter level of player #" << i + 1 << ": ";
+        cin >> players[i].level;
+
+        cout << "enter health of player #" << i + 1 << ": ";
+        cin >> players[i].health;
+
+        cout << endl;
+    }
+
+    for (int i = 0; i < numplayers - 1; i++) {
+        for (int j = 0; j < numplayers - 1 - i; j++) {
+            if (players[j].health < players[j + 1].health) {
+                player temp = players[j];
+                players[j] = players[j + 1];
+                players[j + 1] = temp;
+            }
+        }
+    }
+
+    cout << "players sorted by descending health:" << endl;
+    for (int i = 0; i < numplayers; i++) {
+        cout << "name: " << players[i].name
+            << ", level: " << players[i].level
+            << ", health: " << players[i].health << endl;
+    }
 }
 
 void showMenu() {
