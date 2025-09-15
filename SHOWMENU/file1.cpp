@@ -143,6 +143,108 @@ void task7()
 
 void task8()
 {
+    int x = 10;
+    int& ref = x;
+    cin >> ref;
+    cout << x;
+}
+
+void task9()
+{
+    const int numSubjects = 5;
+    int grades[numSubjects];
+    int sum = 0;
+    int minGrade = 100;
+    int maxGrade = 0;
+
+    cout << "Enter grades for " << numSubjects << " subjects:\n";
+
+    for (int i = 0; i < numSubjects; ++i) 
+    {
+        cout << "Grade " << i + 1 << ": ";
+        cin >> grades[i];
+
+        sum += grades[i];
+        if (grades[i] < minGrade) minGrade = grades[i];
+        if (grades[i] > maxGrade) maxGrade = grades[i];
+    }
+
+    double average = static_cast<double>(sum) / numSubjects;
+
+    cout << "\nAverage grade: " << average << "\n";
+    cout << "Minimum grade: " << minGrade << "\n";
+    cout << "Maximum grade: " << maxGrade << "\n";
+}
+
+void levelUpByValue(int level, int increase)
+{
+    level += increase;
+}
+
+void levelUpByPTR(int* level, int increase)
+{
+    *level += increase;
+}
+
+void levelUpByRef(int& level, int increase)
+{
+    level += increase;
+}
+
+void task10()
+{
+    int level;
+    cout << "enter level: " << endl;
+    cin >> level;
+    int increase;
+    cout << "enter increase: " << endl;
+    cin >> increase;
+    levelUpByPTR(&level, increase);
+    cout << "after ptr: " << level << endl;
+    levelUpByValue(level, increase);
+    cout << "after value: " << level << endl;
+    levelUpByRef(level, increase);
+    cout << "after refeerence: " << level << endl;
+}
+
+int countValue(int* arr, int length, int value) 
+{
+    int count = 0;
+    for (int i = 0; i < length; i++) 
+    {
+        if (arr[i] == value) 
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+void task11()
+{
+    int length;
+    cout << "enter size of array: ";
+    cin >> length;
+    int* arr = new int[length];
+    cout << "enter " << length << "elements of array: " << endl;
+    for (int i = 0; i < length; i++)
+    {
+        cout << "element " << i + 1 << ": ";
+        cin >> arr[i];
+    }
+    int value;
+    cout << "enter value for search: ";
+    cin >> value;
+
+    int result = countValue(arr, length, value);
+    cout << "value " << value << " meet " << result << " times" << endl;
+
+    delete[] arr;
+    cout << endl;
+}
+
+void task12()
+{
 
 }
 
@@ -157,6 +259,10 @@ void showMenu() {
         cout << "6 - railway(for)\n";
         cout << "7 - adress(pointer)\n";
         cout << "8 - link\n";
+        cout << "9 - array\n";
+        cout << "10 - func\n";
+        cout << "11 - func + array\n";
+        cout << "12 - struct\n";
         cout << "0 - Exit\n";
         cout << "Choose an option: ";
 
@@ -174,6 +280,10 @@ void showMenu() {
         case 6: task6(); break;
         case 7: task7(); break;
         case 8: task8(); break;
+        case 9: task9(); break;
+        case 10: task10(); break;
+        case 11: task11(); break;
+        case 12: task12(); break;
         default: cout << "Invalid choice!" << endl;
         }
     }
